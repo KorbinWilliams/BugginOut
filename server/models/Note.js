@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
+const ObjectId = mongoose.Types.ObjectId
 
 var Note = new Schema({
   content: { type: String, required: true },
