@@ -15,13 +15,24 @@ class BugService {
     }
   }
   async create(body) {
-    throw new Error("Method not implemented.");
+    let data = await _repository.create(body)
+    return data
   }
   async update(id, body) {
-    throw new Error("Method not implemented.");
+    let data = await _repository.findOneAndUpdate({ _id: id }, body, {
+      new: true
+    })
+    if (!data) {
+      throw new ApiError("Invalid Id", 400)
+    }
+    return data
   }
   async delete(id, body) {
-    throw new Error("Method not implemented.");
+    let data = await _repository.findOneAndUpdate({ _id: id }, { closed: true })
+    if (!data) {
+      throw new ApiError("Invalid Id", 400)
+    }
+    return data
   }
 }
 
