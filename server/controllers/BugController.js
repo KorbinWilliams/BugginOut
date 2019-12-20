@@ -1,20 +1,60 @@
 import express from "express";
-import valueService from "../services/ValueService";
+import bugService from "../services/BugService";
+import e from "express";
 
-export default class ValueController {
+export default class BugController {
   constructor() {
     this.router = express
       .Router()
-      //NOTE  each route gets registered as a .get, .post, .put, or .delete, the first parameter of each method is a string to be concatinated onto the base url registered with the route in main. The second parameter is the method that will be run when this route is hit.
-      .get("", this.getAll);
+      .get("", this.getAll)
+      .get("/:id", this.getById)
+      .post("", this.create)
+      .put("/:id", this.update)
+      .delete("/:id", this.delete)
+    // don't forget delete is going to be a soft delete
   }
 
   async getAll(req, res, next) {
     try {
-      let data = await valueService.getAll();
+      let data = await bugService.getAll();
       return res.send(data);
     } catch (error) {
       next(error);
+    }
+  }
+
+  async getById(res, req, next) {
+    try {
+      let data = await bugService.getById(req.params.id)
+      return res.send(data)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async create(res, req, next) {
+    try {
+      let data = await bugService.create(req.body)
+      return res.send(data)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async update(res, req, next) {
+    try {
+      let data = await bugService.update(req.params.id, req.body)
+      return res.send(data)
+    } catch (error) {
+
+    }
+  }
+
+  async delete(res, req, next) {
+    try {
+      let data = await bugService.delete(req.params.id, req.body)
+    } catch (error) {
+      next(error)
     }
   }
 }
