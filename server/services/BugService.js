@@ -13,10 +13,10 @@ class BugService {
     if (!data) {
       throw new ApiError("Invalid Id", 400);
     }
+    return data
   }
   async create(body) {
-    let data = await _repository.create(body)
-    return data
+    return await _repository.create(body)
   }
   async update(id, body) {
     let data = await _repository.findOneAndUpdate({ _id: id }, body, {
@@ -27,7 +27,7 @@ class BugService {
     }
     return data
   }
-  async delete(id, body) {
+  async delete(id) {
     let data = await _repository.findOneAndUpdate({ _id: id }, { closed: true })
     if (!data) {
       throw new ApiError("Invalid Id", 400)

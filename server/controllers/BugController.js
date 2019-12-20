@@ -24,7 +24,7 @@ export default class BugController {
     }
   }
 
-  async getById(res, req, next) {
+  async getById(req, res, next) {
     try {
       let data = await bugService.getById(req.params.id)
       return res.send(data)
@@ -34,7 +34,7 @@ export default class BugController {
   }
 
 
-  async getNotesByBugId(res, req, next) {
+  async getNotesByBugId(req, res, next) {
     try {
       let data = await noteService.getNotesByBugId(req.params.id)
       return res.send(data)
@@ -43,7 +43,7 @@ export default class BugController {
     }
   }
 
-  async create(res, req, next) {
+  async create(req, res, next) {
     try {
       let data = await bugService.create(req.body)
       return res.send(data)
@@ -52,7 +52,7 @@ export default class BugController {
     }
   }
 
-  async update(res, req, next) {
+  async update(req, res, next) {
     try {
       let data = await bugService.update(req.params.id, req.body)
       return res.send(data)
@@ -61,9 +61,10 @@ export default class BugController {
     }
   }
 
-  async delete(res, req, next) {
+  async delete(req, res, next) {
     try {
-      await bugService.delete(req.params.id, req.body)
+      let data = await bugService.delete(req.params.id)
+      res.send(data)
     } catch (error) {
       next(error)
     }
