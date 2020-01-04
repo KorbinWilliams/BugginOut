@@ -19,7 +19,7 @@ class BugService {
     return await _repository.create(body)
   }
   async update(id, body) {
-    let data = await _repository.findOneAndUpdate({ _id: id }, body, {
+    let data = await _repository.findOneAndUpdate({ _id: id, closed: false }, body, {
       new: true
     })
     if (!data) {

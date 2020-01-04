@@ -54,14 +54,12 @@ export default class BugController {
 
   // TODO make it so bugs that are closed cannot be edited
   async update(req, res, next) {
-    if (req.params.closed == false) {
-      try {
-        let data = await bugService.update(req.params.id, req.body)
-        return res.send(data)
-      }
-      catch (error) {
-        next(error)
-      }
+    try {
+      let data = await bugService.update(req.params.id, req.body)
+      return res.send(data)
+    }
+    catch (error) {
+      next(error)
     }
   }
 
