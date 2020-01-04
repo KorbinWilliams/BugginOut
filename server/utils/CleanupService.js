@@ -15,3 +15,5 @@ class CleanupService {
 
 const cleanupService = new CleanupService();
 export default cleanupService;
+
+// Pretty sure this is either for the tests
