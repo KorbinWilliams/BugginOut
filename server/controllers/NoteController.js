@@ -21,7 +21,7 @@ export default class NoteController {
     }
   }
 
-  async getById(res, req, next) {
+  async getById(req, res, next) {
     try {
       let data = await noteService.getById(req.params.id)
       return res.send(data)
@@ -30,7 +30,7 @@ export default class NoteController {
     }
   }
 
-  async create(res, req, next) {
+  async create(req, res, next) {
     try {
       let data = await noteService.create(req.body)
       return res.send(data)
@@ -39,7 +39,7 @@ export default class NoteController {
     }
   }
 
-  async update(res, req, next) {
+  async update(req, res, next) {
     try {
       let data = await noteService.update(req.params.id, req.body)
       return res.send(data)
@@ -48,9 +48,10 @@ export default class NoteController {
     }
   }
 
-  async delete(res, req, next) {
+  async delete(req, res, next) {
     try {
-      await noteService.delete(req.params.id, req.body)
+      let data = await noteService.delete(req.params.id)
+      return res.send(data)
     } catch (error) {
       next(error)
     }

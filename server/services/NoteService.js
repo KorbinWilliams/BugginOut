@@ -16,12 +16,12 @@ class NoteService {
   }
 
   async getNotesByBugId(bug) {
-    return await _repository.find({ bug })
+    let data = await _repository.find({ bug })
+    return data
   }
 
   async create(body) {
-    let data = await _repository.create(body)
-    return data
+    return await _repository.create(body)
   }
   async update(id, body) {
     let data = await _repository.findOneAndUpdate({ _id: id }, body, {
