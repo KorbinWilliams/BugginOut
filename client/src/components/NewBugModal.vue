@@ -4,17 +4,22 @@
     <div class="modal">
       <header class="modal-header">
         <slot name="header">
-          Submit a bug
-          <button type="button" class="btn-close" @click="close">x</button>
+          <h1>Submit a bug</h1>
         </slot>
       </header>
       <section class="modal-body">
-        <slot name="body">I'm the default body!</slot>
+        <slot name="body">
+          <form @submit.prevent="createBug">
+            <input required type="text" v-model="newBug.title" placeholder="title" />
+            <input required type="text" v-model="newBug.description" placeholder="description" />
+            <input required type="text" v-model="newBug.reportedBy" placeholder="user" />
+            <button class="btn btn-green" @click="createBug">Submit</button>
+          </form>
+        </slot>
       </section>
       <footer class="modal-footer">
         <slot name="footer">
-          I'm the default footer!
-          <button type="button" class="btn-green" @click="close">Close me!</button>
+          <button type="button" class="btn-red" @click="close">Close</button>
         </slot>
       </footer>
     </div>
@@ -24,7 +29,6 @@
 <script>
 export default {
   name: "modal",
-
   methods: {
     close() {
       this.$emit("close");
@@ -33,7 +37,11 @@ export default {
       let bug = { ...this.newBug };
       this.$store.dispatch("createBug", bug);
       this.newBug = {
-        // properties of bug
+        closed: false,
+        title: "",
+        description: "",
+        reportedBy: "",
+        closedDate: "N/A"
       };
     }
   }
