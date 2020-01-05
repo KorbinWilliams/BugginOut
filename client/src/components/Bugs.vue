@@ -1,11 +1,27 @@
-<template></template>
+<template>
+  <div class="bugs">
+    <div class="row">
+      <div class="col">{{ bugs }}</div>
+    </div>
+  </div>
+</template>
 
 <script>
 export default {
   name: "Bugs",
-  props: {
-    msg: String
-  }
+  data() {},
+  mounted() {
+    this.$store.dispatch("getBugs");
+  },
+  methods: {
+    getBugById() {}
+  },
+  computed: {
+    bugs() {
+      return this.$store.state.bugs;
+    }
+  },
+  components: {}
 };
 </script>
 

@@ -1,17 +1,35 @@
 <template>
-  <div class="home"></div>
+  <div class="home container-fluid">
+    <nav-component />
+    <div class="row">
+      <div class="col">
+        <bugs-component />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import Bugs from "@/components/Bugs.vue";
+import Nav from "@/components/Nav.vue";
 
 export default {
   name: "home",
+  data: {},
+  mounted: {},
+  computed: {},
   components: {
-    Bugs
+    Bugs,
+    Nav
   }
 };
 </script>
 
-// <img alt="Vue logo" src="../assets/logo.png" /> where we gonna put this lol
+<style>
+h1 img {
+  transform: rotate(180deg);
+  height: 1em;
+}
+</style>
+
