@@ -1,24 +1,18 @@
 <template>
   <div class="bug">
-    <div class="row">
-      <div class="col">{{ bugs }}</div>
-    </div>
+    <router-link :to="{ name: 'bugDetails', params: { id: bugData.id } }">
+      <p>{{ bugData.Title }}</p>
+    </router-link>
   </div>
 </template>
 
 <script>
 export default {
   name: "Bug",
-  // data() {},
-  mounted() {
-    this.$store.dispatch("getBugs");
-  },
-  methods: {
-    getBugById() {}
-  },
+  props: ["bugData"],
   computed: {
     bugs() {
-      return this.$store.state.bugs;
+      return this.bugData;
     }
   },
   components: {}

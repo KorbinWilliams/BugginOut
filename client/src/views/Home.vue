@@ -1,9 +1,11 @@
 <template>
   <div class="home container-fluid">
-    <nav-component />
-    <div class="row">
-      <div class="col">
-        <bugs-component />
+    <div>
+      <nav-component />
+    </div>
+    <div class="row bugs">
+      <div class="col-4" v-for="bug in bugs" :key="bug.id">
+        <bug-component :bugData="bug" />
       </div>
     </div>
     <div class="row">
@@ -23,9 +25,14 @@ import NavComponent from "@/components/Nav.vue";
 
 export default {
   name: "home",
-  // data() {},
-  mounted() {},
-  computed: {},
+  mounted() {
+    this.$store.dispatch("getBugs");
+  },
+  computed: {
+    bugs() {
+      return this.$store.state.jobs;
+    }
+  },
   components: {
     BugComponent,
     NavComponent

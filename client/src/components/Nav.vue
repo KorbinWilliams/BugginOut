@@ -1,41 +1,56 @@
 <template>
   <div class="nav">
     <div class="row">
-      <div class="col-2">
-        <!-- home button  -->
+      <div class="col-4">
+        <button>Home</button>
       </div>
-      <div class="col-8">
-        <h1>
-          Bug Z
-          <img src="../assets/logo.png" alt="logo" />pper
-        </h1>
-      </div>
-      <div class="col-2">
-        
+      <div class="col-8 justify-content-center">
+        <h1>Bug Zapper</h1>
       </div>
     </div>
-    <modal-component v-show="showModal" />
+    <div class="row">
+      <div class="col-12">
+        <form @submit.prevent="createBug">
+          <input required type="text" v-model="newBug.title" placeholder="title" />
+          <input required type="text" v-model="newBug.description" placeholder="description" />
+          <input required type="text" v-model="newBug.reportedBy" placeholder="user" />
+          <button class="btn btn-success" @click="createBug">Submit</button>
+        </form>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import Modal from "../components/Modal.vue";
-
 export default {
   name: "Nav",
-  data: {
-    showModal: false
+  data() {
+    return {
+      newBug: {
+        closed: false,
+        title: "",
+        description: "",
+        reportedBy: "",
+        closedDate: Date
+      }
+    };
   },
   mounted: {},
   methods: {
     createBug() {
       let bug = { ...this.newBug };
+      this.$store.dispatch("createBug", bug);
+      this.newBug = {
+        closed: false,
+        title: "",
+        description: "",
+        reportedBy: "",
+        closedDate: Date
+      };
     }
   },
   computed: {},
-  components: {
-    Modal
-  }
+  components: {}
 };
 </script> 
 
