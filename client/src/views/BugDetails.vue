@@ -3,7 +3,13 @@
     <nav-component />
     <div class="row">
       <div class="col-12">
-        <p></p>
+        <h1>{{bug.title}}</h1>
+        <h4>Author:{{bug.reportedBy}}</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col bg1">
+        <p class="popout">{{bug.description}}</p>
       </div>
     </div>
   </div>
@@ -31,4 +37,11 @@ export default {
 </script>
 
 <style>
+.bg1 {
+  background-image: url(https://image.shutterstock.com/image-vector/insects-linear-pattern-vector-seamless-260nw-329207057.jpg);
+}
+
+.popout {
+  color: darkred;
+}
 </style>

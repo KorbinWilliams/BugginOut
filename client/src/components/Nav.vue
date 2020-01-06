@@ -1,5 +1,5 @@
 <template>
-  <div class="nav">
+  <div class="nav bg-blue">
     <div class="row">
       <div class="col-4">
         <router-link to="/">
@@ -8,6 +8,11 @@
       </div>
       <div class="col-8 justify-content-center">
         <h1>Bug Zapper</h1>
+        <img
+          class="resizeImg"
+          src="https://images-na.ssl-images-amazon.com/images/I/51OQImmyexL._SL1068_.jpg"
+          alt="lightning"
+        />
       </div>
     </div>
     <div class="row">
@@ -56,5 +61,13 @@ export default {
 </script> 
 
 <style scoped>
+.resizeImg {
+  height: 60px;
+  width: 60px;
+}
+
+.bg-blue {
+  background-color: aqua;
+}
 </style>
 

@@ -20,6 +20,7 @@
         <p>closed date</p>
       </div>
     </div>
+    <div class="row separator"></div>
     <div class="row bugs">
       <div class="col-12" v-for="bug in bugs" :key="bug.id">
         <bug-component :bugData="bug" />
@@ -60,6 +61,11 @@ export default {
 h1 img {
   transform: rotate(180deg);
   height: 1em;
+}
+.separator {
+  height: 1em;
+  width: 100%;
+  background-color: black;
 }
 </style>
 
