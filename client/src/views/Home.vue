@@ -6,22 +6,29 @@
         <bugs-component />
       </div>
     </div>
+    <div class="row">
+      <div class="col">
+        <h1>
+          <router-link to="/bugdetails">Hello World</router-link>
+        </h1>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import Bugs from "@/components/Bugs.vue";
-import Nav from "@/components/Nav.vue";
+import BugComponent from "@/components/Bug.vue";
+import NavComponent from "@/components/Nav.vue";
 
 export default {
   name: "home",
-  data: {},
-  mounted: {},
+  // data() {},
+  mounted() {},
   computed: {},
   components: {
-    Bugs,
-    Nav
+    BugComponent,
+    NavComponent
   }
 };
 </script>

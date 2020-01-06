@@ -1,7 +1,7 @@
 
 <template>
   <div class="modal-backdrop">
-    <div class="modal">
+    <div class="modal is-active">
       <header class="modal-header">
         <slot name="header">
           <h1>Submit a bug</h1>
@@ -19,7 +19,7 @@
       </section>
       <footer class="modal-footer">
         <slot name="footer">
-          <button type="button" class="btn-red" @click="close">Close</button>
+          <button type="button" class="btn-danger" @click="close">Close</button>
         </slot>
       </footer>
     </div>
@@ -28,7 +28,7 @@
 
 <script>
 export default {
-  name: "modal",
+  name: "Modal",
   methods: {
     close() {
       this.$emit("close");

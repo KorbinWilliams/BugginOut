@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import BugDetails from "../views/BugDetails.vue"
 
 Vue.use(VueRouter)
 
@@ -11,8 +12,9 @@ const routes = [
     component: Home
   },
   {
-    path: '/bugs',
-    name: 'bugs',
+    path: '/bugDetails',
+    name: 'bugDetails',
+    component: BugDetails
   }
 ]
 

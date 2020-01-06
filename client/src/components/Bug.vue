@@ -1,5 +1,5 @@
 <template>
-  <div class="bugs">
+  <div class="bug">
     <div class="row">
       <div class="col">{{ bugs }}</div>
     </div>
@@ -8,8 +8,8 @@
 
 <script>
 export default {
-  name: "Bugs",
-  data() {},
+  name: "Bug",
+  // data() {},
   mounted() {
     this.$store.dispatch("getBugs");
   },

@@ -11,16 +11,21 @@
         </h1>
       </div>
       <div class="col-2">
-        <!-- make bug button -->
+        
       </div>
     </div>
+    <modal-component v-show="showModal" />
   </div>
 </template>
 
 <script>
+import Modal from "../components/Modal.vue";
+
 export default {
   name: "Nav",
-  data: {},
+  data: {
+    showModal: false
+  },
   mounted: {},
   methods: {
     createBug() {
@@ -28,7 +33,9 @@ export default {
     }
   },
   computed: {},
-  components: {}
+  components: {
+    Modal
+  }
 };
 </script> 
 
