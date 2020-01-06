@@ -26,7 +26,11 @@ export default {
         dangerMode: true
       }).then(willDelete => {
         if (willDelete) {
-          deleteNote();
+          this.$store.dispatch(
+            "deleteNote",
+            this.noteData.id,
+            this.noteData.bug
+          );
           swal("Poof! Your imaginary file has been deleted!", {
             icon: "success"
           });
@@ -34,9 +38,6 @@ export default {
           swal("Your imaginary file is safe!");
         }
       });
-    },
-    deleteNote() {
-      this.$store.dispatch("deleteNote", this.noteData.id, this.noteData.bug);
     }
   }
 };
@@ -45,20 +46,3 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 </style>
-
-swal({
-  title: "Are you sure?",
-  text: "Once deleted, you will not be able to recover this imaginary file!",
-  icon: "warning",
-  buttons: true,
-  dangerMode: true,
-})
-.then((willDelete) => {
-  if (willDelete) {
-    swal("Poof! Your imaginary file has been deleted!", {
-      icon: "success",
-    });
-  } else {
-    swal("Your imaginary file is safe!");
-  }
-});
