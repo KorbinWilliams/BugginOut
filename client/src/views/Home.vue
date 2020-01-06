@@ -3,20 +3,36 @@
     <div>
       <nav-component />
     </div>
+    <div class="row">
+      <div class="col-2">
+        <p>Title</p>
+      </div>
+      <div class="col-2">
+        <p>closed</p>
+      </div>
+      <div class="col-2">
+        <p>description</p>
+      </div>
+      <div class="col-2">
+        <p>reported by</p>
+      </div>
+      <div class="col-2">
+        <p>closed date</p>
+      </div>
+    </div>
     <div class="row bugs">
-      <div class="col-4" v-for="bug in bugs" :key="bug.id">
+      <div class="col-12" v-for="bug in bugs" :key="bug.id">
         <bug-component :bugData="bug" />
       </div>
     </div>
     <div class="row">
       <div class="col">
-        <h1>
-          <router-link to="/bugdetails">Hello World</router-link>
-        </h1>
+        <h1></h1>
       </div>
     </div>
   </div>
 </template>
+
 
 <script>
 // @ is an alias to /src
@@ -30,12 +46,12 @@ export default {
   },
   computed: {
     bugs() {
-      return this.$store.state.jobs;
+      return this.$store.state.bugs;
     }
   },
   components: {
-    BugComponent,
-    NavComponent
+    NavComponent,
+    BugComponent
   }
 };
 </script>

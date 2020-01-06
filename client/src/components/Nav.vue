@@ -2,7 +2,9 @@
   <div class="nav">
     <div class="row">
       <div class="col-4">
-        <button>Home</button>
+        <router-link to="/">
+          <button>Home</button>
+        </router-link>
       </div>
       <div class="col-8 justify-content-center">
         <h1>Bug Zapper</h1>
@@ -35,7 +37,6 @@ export default {
       }
     };
   },
-  mounted: {},
   methods: {
     createBug() {
       let bug = { ...this.newBug };
@@ -54,7 +55,6 @@ export default {
 };
 </script> 
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 </style>
 

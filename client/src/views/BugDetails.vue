@@ -1,16 +1,9 @@
 <template>
-  <div class="home container-fluid">
+  <div class="bug-details container-fluid">
     <nav-component />
     <div class="row">
-      <div class="col">
-        <bugs-component />
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <router-link to="/">
-          <h1>You are now here!</h1>
-        </router-link>
+      <div class="col-12">
+        <p></p>
       </div>
     </div>
   </div>
@@ -18,24 +11,24 @@
 
 <script>
 // @ is an alias to /src
-import BugComponent from "@/components/Bug.vue";
 import NavComponent from "@/components/Nav.vue";
 
 export default {
-  name: "home",
-  // data() {},
-  mounted() {},
-  computed: {},
+  name: "BugDetails",
+  mounted() {
+    this.$store.dispatch("getBugById", this.$route.params.id),
+      this.$store.dispatch("getNotesByBugId", this.$route.params.id);
+  },
+  computed: {
+    bug() {
+      return this.$store.state.activeBug;
+    }
+  },
   components: {
-    BugComponent,
     NavComponent
   }
 };
 </script>
 
 <style>
-h1 img {
-  transform: rotate(180deg);
-  height: 1em;
-}
 </style>
