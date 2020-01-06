@@ -5,11 +5,21 @@
       <div class="col-12">
         <h1>{{bug.title}}</h1>
         <h4>Author:{{bug.reportedBy}}</h4>
+        <h5>closed: {{bug.closed}}</h5>
+        <div class="col-12">
+          <button @click="closeBugConfirm">Close Bug</button>
+        </div>
       </div>
     </div>
     <div class="row">
       <div class="col bg1">
         <p class="popout">{{bug.description}}</p>
+        <form @submit="editBug">
+          <input required type="text" v-model="editedBug.title" placeholder="title" />
+          <input required type="text" v-model="editedBug.reportedBy" placeholder="user" />
+          <input required type="text" v-model="editedBug.description" placeholder="description" />
+          <button class="btn btn-success" @click="editBug">Edit Bug</button>
+        </form>
       </div>
     </div>
     <div class="separator"></div>
@@ -66,8 +76,32 @@ export default {
     },
     editBug() {
       let editedBug = { ...this.editedBug };
-      this.$store.dispatch("editBug", editedBug);
-      this.editedBug = {};
+      this.$store.dispatch("editBug", this.$route.params.id, editedBug);
+      this.editedBug = {
+        title: "",
+        reportedBy: "",
+        description: "",
+        id: this.$route.params.id
+      };
+    },
+    closeBugConfirm() {
+      swal({
+        title: "Are you sure?",
+        text:
+          "Once deleted, you will not be able to recover this imaginary file!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true
+      }).then(willDelete => {
+        if (willDelete) {
+          this.$store.dispatch("closeBug", this.$route.params.id);
+          swal("Poof! Your imaginary file has been deleted!", {
+            icon: "success"
+          });
+        } else {
+          swal("Your imaginary file is safe!");
+        }
+      });
     }
   },
   computed: {
@@ -100,3 +134,4 @@ export default {
   background-color: black;
 }
 </style>
+

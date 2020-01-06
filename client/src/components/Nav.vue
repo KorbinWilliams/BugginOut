@@ -45,7 +45,9 @@ export default {
   methods: {
     createBug() {
       let bug = { ...this.newBug };
-      this.$store.dispatch("createBug", bug);
+      this.$store.dispatch("createBug", bug).then(response => {
+        this.$router.push("bugs/" + this.$store.state.activeBug.id);
+      });
       this.newBug = {
         closed: false,
         title: "",

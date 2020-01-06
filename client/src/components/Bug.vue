@@ -4,7 +4,7 @@
       <router-link :to="{ name: 'bugDetails', params: { id: bugData.id } }">
         <div class="col-2">{{ bugData.title }}</div>
       </router-link>
-      <div class="col-2">{{ bugData.closed }}</div>
+      <div class="col-2 blue-text" :class="{'red-text':bugData.closed}">{{ bugData.closed }}</div>
       <div class="col-2">{{ bugData.description }}</div>
       <div class="col-2">{{ bugData.reportedBy }}</div>
       <div class="col-2">{{ shortenDate }}</div>
@@ -19,7 +19,7 @@ export default {
   props: ["bugData"],
   computed: {
     shortenDate() {
-      return this.bugData.updatedAt.substr(0, 10) + "..";
+      return this.bugData.updatedAt.substr(0, 10);
     }
   },
   components: {},
@@ -34,4 +34,14 @@ export default {
   width: 100%;
   background-color: black;
 }
+.bg-black {
+  background-color: cornflowerblue;
+}
+.blue-text {
+  color: blue;
+}
+.red-text {
+  color: red;
+}
 </style>
+
