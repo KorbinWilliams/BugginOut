@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-4">
         <router-link to="/">
-          <button>Home</button>
+          <button @click="clearActiveNotes">Home</button>
         </router-link>
       </div>
       <div class="col-8 justify-content-center">
@@ -53,6 +53,9 @@ export default {
         reportedBy: "",
         closedDate: Date
       };
+    },
+    clearActiveNotes() {
+      this.$store.dispatch("clearActiveNotes");
     }
   },
   computed: {},

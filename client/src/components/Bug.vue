@@ -2,12 +2,12 @@
   <div class="bug">
     <div class="row">
       <router-link :to="{ name: 'bugDetails', params: { id: bugData.id } }">
-        <div class="col-4">{{ bugData.title }}</div>
+        <div class="col-2">{{ bugData.title }}</div>
       </router-link>
       <div class="col-2">{{ bugData.closed }}</div>
       <div class="col-2">{{ bugData.description }}</div>
       <div class="col-2">{{ bugData.reportedBy }}</div>
-      <div class="col-2">{{ bugData.closedDate }}</div>
+      <div class="col-2">{{ shortenDate }}</div>
     </div>
     <div class="row separator"></div>
   </div>
@@ -17,7 +17,11 @@
 export default {
   name: "Bug",
   props: ["bugData"],
-  computed: {},
+  computed: {
+    shortenDate() {
+      return this.bugData.updatedAt.substr(0, 10) + "..";
+    }
+  },
   components: {},
   methods: {}
 };

@@ -31,8 +31,11 @@ export default new Vuex.Store({
     setActiveNotes(state, notes) {
       state.activeNotes = notes
     },
-    addNote(state, note) {
+    addActiveNote(state, note) {
       state.notes.push(note)
+    },
+    clearActiveNotes(state) {
+      state.activeNotes = []
     }
   },
   actions: {
@@ -52,6 +55,10 @@ export default new Vuex.Store({
       await _api.delete("bugs/" + id)
       dispatch("getBugs")
     },
+    async editBug({ commit, dispatch }, { id, reportedBy, title, description }) {
+      let res = await _api.put("bugs/" + id, { reportedBy, title, description });
+      dispatch("getBugById", id);
+    },
     async getNotes({ commit, dispatch }) {
       let res = await _api.get("")
       commit("setAllNotes", res.data)
@@ -62,11 +69,14 @@ export default new Vuex.Store({
     },
     async createNote({ commit, dispatch }, note) {
       let res = await _api.post("notes", note)
-      commit("addNote", note)
+      commit("addActiveNote", note)
     },
-    async deleteNote({ commit, dispatch }, id) {
+    async deleteNote({ commit, dispatch }, id, bugId) {
       await _api.delete("notes/" + id)
-      dispatch("getNotes")
+      dispatch("getNotesByBugId", bugId)
+    },
+    clearActiveNotes({ commit, dispatch }) {
+      commit("clearActiveNotes")
     }
   },
   modules: {

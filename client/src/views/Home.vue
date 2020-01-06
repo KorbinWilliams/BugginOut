@@ -17,7 +17,7 @@
         <p>reported by</p>
       </div>
       <div class="col-2">
-        <p>closed date</p>
+        <p>updated at</p>
       </div>
     </div>
     <div class="row separator"></div>
